@@ -1,0 +1,47 @@
+class Stack:
+    def __init__(self):
+        self.elem = []
+
+    def push(self, elem):
+        self.elem.append(elem)
+
+    def pop(self):
+        if len(self.elem) > 0:
+            return self.elem.pop()
+        else:
+            raise IndexError("The stack is empty.")
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if len(self.elem) > 0:
+            return self.pop()
+        else:
+            raise StopIteration
+
+class Queue:
+    def __init__(self):
+        self.elem = []
+
+    def push(self, elem):
+        self.elem.append(elem)
+
+    def pop(self):
+        if len(self.elem) > 0:
+            return self.elem.pop(0)
+        else:
+            raise IndexError("The stack is empty.")
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if len(self.elem) > 0:
+            return self.pop()
+        else:
+            raise StopIteration
+
+
+
+
