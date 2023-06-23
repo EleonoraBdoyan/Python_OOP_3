@@ -41,7 +41,47 @@ class Queue:
             return self.pop()
         else:
             raise StopIteration
+            
+# Implement an Adapter design pattern. Adapter is a structural design pattern that allows objects 
+# with incompatible interfaces to collaborate. Adapters can not only convert data into various formats 
+# but can also help objects with different interfaces collaborate. Here’s how it works:            
+            
 
+class CurrencyConverter:
+    def convert(self, amount):
+        pass
 
+class USDtoEURConverter:
+    def usd_to_eur_convert(self,amount):
+        return amount * 0.8
+
+class USDtoAMDConverter:
+    def usd_to_amd_convert(self, amount):
+        return amount * 390
+
+class USDtoEURAdapter(CurrencyConverter):
+    def __init__(self, converter):
+        self.converter = converter
+
+    def convert(self, amount):
+        return self.converter.usd_to_eur_convert(amount)
+
+class USDtoAMDAdapter(CurrencyConverter):
+    def __init__(self, converter):
+        self.converter = converter
+
+    def convert(self, amount):
+        return self.converter.usd_to_amd_convert(amount)
+
+usd_to_eur = USDtoEURConverter()
+usd_to_eur_convert = USDtoEURAdapter(usd_to_eur)
+usd = 100
+eur = usd_to_eur_convert.convert(usd)
+print(eur)
+
+usd_to_amd = USDtoAMDConverter()
+usd_to_amd_con = USDtoAMDAdapter(usd_to_amd)
+amd = usd_to_amd_con.convert(usd)
+print(amd)
 
 
